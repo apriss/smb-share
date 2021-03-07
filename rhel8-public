@@ -7,10 +7,12 @@ systemctl status smb
 firewall-cmd --permanent --add-service=samba --zone=public
 firewall-cmd --reload
 
-mkdir -p /var/shares
-chmod -R 0777 /var/share
-chown -R nobody:nobody /var/share
-chcon -t samba_share_t /var/share
+echo "Please input shared folder name?"
+read fn
+mkdir -p /var/$fn
+chmod -R 0777 /var/$fn
+chown -R nobody:nobody /var/$fn
+chcon -t samba_share_t /var/$fn
 
 cat > /etc/samba/smb.conf << EOF
 [global]
@@ -19,9 +21,9 @@ cat > /etc/samba/smb.conf << EOF
         security = user
 	map to guest = Bad User
 	
-[Anonymous]
+[$fn]
         comment = Anonymous File Server Share
-        path = /srv/samba/anonymous
+        path = /var/$fn
         browsable =yes
         writable = yes
         guest ok = yes
