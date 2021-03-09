@@ -15,10 +15,12 @@ chcon -t samba_share_t /var/$fn
 
 echo "Please insert nethbios name?"
 read nbm
+echo "Please insert workgroup name?"
+read wg
 mv /etc/samba/smb.conf /etc/samba/smb.conf.ori
 cat > /etc/samba/smb.conf << EOF
 [global]
-        workgroup = WORKGROUP
+        workgroup = $wg
         netbios name = $nbm
         security = user
 	map to guest = Bad User
