@@ -36,9 +36,8 @@ case "$mode" in
 			workgroup = $wg
 			netbios name = $nbn
 			security = user
-			map to guest = Bad User
+			
 		[$fn]
-			comment = Anonymous File Server Share
 			path = /var/$fn
 			browsable =yes
 			writable = yes
