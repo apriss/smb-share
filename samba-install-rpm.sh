@@ -56,7 +56,6 @@ case "$mode" in
 			map to guest = Bad User
 
 		[$fn]
-			comment = Anonymous File Server Share
 			path = /var/$fn
 			browsable =yes
 			writable = yes
