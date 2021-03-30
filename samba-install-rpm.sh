@@ -10,7 +10,7 @@ echo "Please insert shared folder name?"
 read fn
 mkdir -p /var/$fn
 chmod -R 0777 /var/$fn
-chown -R nobody:nobody /var/$fn
+chown -R nobody:nogroup /var/$fn
 chcon -t samba_share_t /var/$fn
 
 mv /etc/samba/smb.conf /etc/samba/smb.conf.ori
