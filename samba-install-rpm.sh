@@ -1,6 +1,7 @@
 #!/bin/bash
 
-dnf install -y samba samba-client samba-common
+dnf makecache
+dnf install -y samba samba-common
 systemctl start smb
 systemctl enable smb
 firewall-cmd --permanent --add-service=samba --zone=public
