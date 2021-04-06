@@ -11,7 +11,7 @@ echo "Please insert shared folder name?"
 read fn
 mkdir -p /var/$fn
 chmod -R 0777 /var/$fn
-chown -R nobody:nogroup /var/$fn
+chown -R nobody:nobody /var/$fn
 chcon -t samba_share_t /var/$fn
 
 mv /etc/samba/smb.conf /etc/samba/smb.conf.ori
@@ -24,7 +24,7 @@ read wg
 read -p "Do you want to create authentication for access samba shared folder? (y / n)" mode
 
 case "$mode" in
-	y) do
+	y) 
 		echo "Please insert username?"
 		read $un
 		adduser -M $un -s /sbin/nologin
@@ -48,7 +48,7 @@ case "$mode" in
 	;;
 
 case "$mode" in
-	n) do
+	n) 
 		cat > /etc/samba/smb.conf << EOF
 		[global]
 			workgroup = $wg
