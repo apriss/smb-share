@@ -32,7 +32,7 @@ case "$mode" in
 		read $pass
 		smbpasswd -a $un
 				
-		cat > /etc/samba/smb.conf << EOF
+		cat > /etc/samba/smb.conf <<-'eof'
 		[global]
 			workgroup = $wg
 			netbios name = $nbn
@@ -44,12 +44,12 @@ case "$mode" in
 			writable = yes
 			guest ok = no
 			read only = no
-		EOF
+		eof
 	;;
 
 case "$mode" in
 	n) 
-		cat > /etc/samba/smb.conf << EOF
+		cat > /etc/samba/smb.conf <<-'eof'
 		[global]
 			workgroup = $wg
 			netbios name = $nbn
@@ -63,7 +63,7 @@ case "$mode" in
 			guest ok = yes
 			read only = no
 			force user = nobody
-		EOF
+		eof
 	;;
 	
 systemctl restart smb.service
