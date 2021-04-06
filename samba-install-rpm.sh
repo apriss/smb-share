@@ -32,38 +32,38 @@ case "$mode" in
 		read $pass
 		smbpasswd -a $un
 				
-		cat > /etc/samba/smb.conf <<-'eof'
-		[global]
-			workgroup = $wg
-			netbios name = $nbn
-			security = user
+		cat > /etc/samba/smb.conf <<  EOF
+			[global]
+				workgroup = $wg
+				netbios name = $nbn
+				security = user
 			
-		[$fn]
-			path = /var/$fn
-			browsable =yes
-			writable = yes
-			guest ok = no
-			read only = no
-		eof
+			[$fn]
+				path = /var/$fn
+				browsable =yes
+				writable = yes
+				guest ok = no
+				read only = no
+		EOF
 	;;
 
 case "$mode" in
 	n) 
-		cat > /etc/samba/smb.conf <<-'eof'
-		[global]
-			workgroup = $wg
-			netbios name = $nbn
-			security = user
-			map to guest = Bad User
+		cat > /etc/samba/smb.conf << EOF
+			[global]
+				workgroup = $wg
+				netbios name = $nbn
+				security = user
+				map to guest = Bad User
 
-		[$fn]
-			path = /var/$fn
-			browsable =yes
-			writable = yes
-			guest ok = yes
-			read only = no
-			force user = nobody
-		eof
+			[$fn]
+				path = /var/$fn
+				browsable =yes
+				writable = yes
+				guest ok = yes
+				read only = no
+				force user = nobody
+		EOF
 	;;
 	
 systemctl restart smb.service
