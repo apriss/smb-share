@@ -64,9 +64,9 @@ case $ans in
 				force user = nobody
 		EOF
 	;;
-	
+
 esac
-	
+
 systemctl restart smb.service
 systemctl restart nmb.service
 testparm
