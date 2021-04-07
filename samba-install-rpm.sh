@@ -47,7 +47,6 @@ case $ans in
 		EOF
 	;;
 
-case "$mode" in
 	n) 
 		cat > /etc/samba/smb.conf <<-EOF
 			[global]
