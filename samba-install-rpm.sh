@@ -21,9 +21,9 @@ read nbn
 echo "Please insert workgroup name? (type WORKGROUP for default)"
 read wg
 
-read -p "Do you want to create authentication for access samba shared folder? (y / n)" mode
-
-case "$mode" in
+echo -n "Do you want to create authentication for access samba shared folder? (y / n) " 
+read ans
+case $ans in
 	y) 
 		echo "Please insert username?"
 		read $un
