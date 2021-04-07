@@ -24,7 +24,7 @@ read wg
 echo -n "Do you want to create authentication for access samba shared folder? (y / n) " 
 read ans
 case $ans in
-	y) 
+	y)
 		echo "Please insert username?"
 		read $un
 		adduser -M $un -s /sbin/nologin
@@ -37,7 +37,7 @@ case $ans in
 				workgroup = $wg
 				netbios name = $nbn
 				security = user
-			
+
 			[$fn]
 				path = /var/$fn
 				browsable =yes
@@ -47,7 +47,7 @@ case $ans in
 		EOF
 	;;
 
-	n) 
+	n)
 		cat > /etc/samba/smb.conf <<-EOF
 			[global]
 				workgroup = $wg
@@ -64,7 +64,8 @@ case $ans in
 				force user = nobody
 		EOF
 	;;
-	esac
+	
+esac
 	
 systemctl restart smb.service
 systemctl restart nmb.service
