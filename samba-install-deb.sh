@@ -19,7 +19,7 @@ read wg
 echo -n "Do you want to create authentication for access samba shared folder? (y / n) " 
 read ans
 case $ans in
-	y) 
+	y)
 		echo "Please insert username?"
 		read $un
 		useradd -m -p -s $un
@@ -27,41 +27,43 @@ case $ans in
 		read $pass
 		smbpasswd -a $un
 				
-		cat > /etc/samba/smb.conf << EOF
-		[global]
-			workgroup = $wg
-			netbios name = $nbn
-			security = user
+		cat > /etc/samba/smb.conf <<-OF
+			[global]
+				workgroup = $wg
+				netbios name = $nbn
+				security = user
 
-		[$fn]
-			path = /var/$fn
-			browsable =yes
-			writable = yes
-			guest ok = no
-			read only = no
+			[$fn]
+				path = /var/$fn
+				browsable =yes
+				writable = yes
+				guest ok = no
+				read only = no
 		EOF
 	;;	
-	
-	n)
-		cat > /etc/samba/smb.conf << EOF
-		[global]
-			workgroup = $wg
-			netbios name = $nbn
-			security = user
-			map to guest = Bad User
 
-		[$fn]
-			path = /var/$fn
-			browsable =yes
-			writable = yes
-			guest ok = yes
-			read only = no
-			force user = nobody
+	n)
+		cat > /etc/samba/smb.conf <<-EOF
+			[global]
+				workgroup = $wg
+				netbios name = $nbn
+				security = user
+				map to guest = Bad User
+
+			[$fn]
+				path = /var/$fn
+				browsable =yes
+				writable = yes
+				guest ok = yes
+				read only = no
+				force user = nobody
 		EOF
 	;;
+
+esac
 	
 systemctl restart smbd.service
 ufw allow samba
 testpar
-esac
+
 
