@@ -27,7 +27,7 @@ case $ans in
 		read $pass
 		smbpasswd -a $un
 				
-		cat > /etc/samba/smb.conf <<-OF
+		cat > /etc/samba/smb.conf <<EOF
 			[global]
 				workgroup = $wg
 				netbios name = $nbn
@@ -43,7 +43,7 @@ case $ans in
 	;;	
 
 	n)
-		cat > /etc/samba/smb.conf <<-EOF
+		cat > /etc/samba/smb.conf <<EOF
 			[global]
 				workgroup = $wg
 				netbios name = $nbn
