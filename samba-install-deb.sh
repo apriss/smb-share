@@ -39,7 +39,7 @@ case $ans in
 				writable = yes
 				guest ok = no
 				read only = no
-		EOF
+EOF
 	;;	
 
 	n)
@@ -57,7 +57,7 @@ case $ans in
 				guest ok = yes
 				read only = no
 				force user = nobody
-		EOF
+EOF
 	;;
 
 esac
